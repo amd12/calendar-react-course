@@ -3,11 +3,13 @@ import {Layout, Menu, Row} from "antd";
 import {useNavigate } from "react-router-dom";
 import {RoteNames} from "../router";
 import {useTypedSelector} from "../hooks/useTypedSelector";
+import {useActions} from "../hooks/useActions";
 
 const Navbar:FC = () => {
 
     const navigate  = useNavigate();
-    const {isAuth} = useTypedSelector(state => state.auth)
+    const {isAuth, user} = useTypedSelector(state => state.auth)
+    const {logout} = useActions()
 
 
     const handlerPage = (key: string) =>{
@@ -19,6 +21,7 @@ const Navbar:FC = () => {
                 break;
             case 'Go out':
                 navigate(RoteNames.LOGIN);
+                logout();
                 break;
         }
     }
@@ -38,7 +41,7 @@ const Navbar:FC = () => {
 
     return (
         <Layout.Header>
-            {isAuth &&  <div className="logo">Artem</div>}
+            {isAuth &&  <div className="logo">{user.username}</div>}
             <Menu items={items} theme='dark' mode='horizontal' onClick={(item)=> handlerPage(item.key)} selectable={false}>
             </Menu>
         </Layout.Header>
