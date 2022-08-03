@@ -1,20 +1,17 @@
-import React, {FC, useEffect} from 'react';
-import {Alert, Button, Checkbox, DatePicker, Form, Input, Row, Select} from "antd";
+import React, {FC, useLayoutEffect} from 'react';
+import {Alert, Button, DatePicker, Form, Input, Row, Select} from "antd";
 import {rules} from "../utils/rules";
 import {useActions} from "../hooks/useActions";
+import {useTypedSelector} from "../hooks/useTypedSelector";
 
 const EventForm: FC= () => {
+    const {users, error} = useTypedSelector(state => state.event)
 
+    const {getAllUsersEvent} = useActions()
 
-    const {getAllUsers2} = useActions()
-
-
-
-    useEffect(() =>{
-        console.log(getAllUsers2())
-        console.log()
-    })
-
+    useLayoutEffect(() =>{
+        getAllUsersEvent()
+    } ,[])
 
     return (
         <Form
@@ -22,13 +19,10 @@ const EventForm: FC= () => {
             labelCol={{span: 8}}
             wrapperCol={{span: 16}}
             initialValues={{remember: true}}
-            // onFinish={onFinish}
-            // onFinishFailed={onFinishFailed}
             autoComplete="off"
-
         >
-            {/*{error &&*/}
-            {/*    <Alert message="Inter incorrect" type="error"/>}*/}
+            {error &&
+                <Alert message="Inter incorrect" type="error"/>}
             <Form.Item
                 label="Name event"
                 name="description"
@@ -48,13 +42,8 @@ const EventForm: FC= () => {
                 label="Change user"
                 name="user"
             >
-                <Select defaultValue="lucy">
-                    <Select.Option value="jack">Jack</Select.Option>
-                    <Select.Option value="lucy">Lucy</Select.Option>
-                    <Select.Option value="disabled" disabled>
-                        Disabled
-                    </Select.Option>
-                    <Select.Option value="Yiminghe">yiminghe</Select.Option>
+                <Select  placeholder='Choose user'>
+                    {users && users.map(user => <Select.Option key={user.username + Math.random()} value={user.username}>{user.username}</Select.Option>)}
                 </Select>
             </Form.Item>
 

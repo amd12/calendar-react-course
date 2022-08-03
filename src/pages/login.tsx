@@ -7,6 +7,7 @@ const Login:FC = () => {
         <Layout>
             <Row justify='center' align='middle' className='h100'>
                 <Card>
+                    test
                     <LoginForm/>
                 </Card>
             </Row>

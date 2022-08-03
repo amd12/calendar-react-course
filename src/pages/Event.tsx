@@ -4,7 +4,6 @@ import {Button, Modal, Row} from "antd";
 import EventForm from "../components/EventForm";
 
 const Event:FC = () => {
-    console.log('Event component')
     const [modalVisible, setModalVisible] = useState(false);
 
     const handleCancel = () => {
