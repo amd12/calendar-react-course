@@ -1,14 +1,16 @@
-import {EventActions, EventActionsEnum, eventState} from "./types";
+import {EventActions, EventActionsEnum, EventState} from "./types";
 
-export const IEventState: eventState = {
-    users: [],
-    error: '',
+export const initialState : EventState = {
+    guests: [],
+    events: [],
 }
 
-export default function eventReducer(state= IEventState, action: EventActions) : eventState  {
+export default function EventReducer(state= initialState, action: EventActions) : EventState  {
     switch (action.type) {
-        case EventActionsEnum.GET_USERS:
-            return {...state, users: [...state.users, ...action.payload] }
+        case EventActionsEnum.SET_GUEST:
+            return {...state, guests: action.payload}
+        case EventActionsEnum.SET_EVENT:
+            return {...state, events: action.payload}
         default:
             return state
     }
