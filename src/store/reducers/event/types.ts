@@ -1,19 +1,26 @@
 import {IUser} from "../../../models/IUser";
+import {IEvent} from "../../../models/IEvent";
 
-export interface eventState {
-    users: IUser[];
-    error: string;
+export interface EventState {
+    guests: IUser[];
+    events: IEvent[];
 }
 
 
 export enum EventActionsEnum {
-    GET_USERS  = 'GET_USERS'
+    SET_GUEST = 'SET_GUEST',
+    SET_EVENT = 'SET_EVENT'
 }
 
-export interface getUsersActions {
-    type: EventActionsEnum.GET_USERS,
+export interface setGuestActions {
+    type: EventActionsEnum.SET_GUEST,
     payload: IUser[];
 }
 
+export interface setEventActions {
+    type: EventActionsEnum.SET_EVENT,
+    payload: IEvent[];
+}
 
-export type EventActions = getUsersActions;
+
+export type EventActions = setGuestActions | setEventActions;
