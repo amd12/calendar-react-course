@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Layout, Menu, Row} from "antd";
+import {Layout, Menu} from "antd";
 import {useNavigate } from "react-router-dom";
 import {RoteNames} from "../router";
 import {useTypedSelector} from "../hooks/useTypedSelector";
@@ -10,7 +10,6 @@ const Navbar:FC = () => {
     const navigate  = useNavigate();
     const {isAuth, user} = useTypedSelector(state => state.auth)
     const {logout} = useActions()
-
 
     const handlerPage = (key: string) =>{
         console.log(key)

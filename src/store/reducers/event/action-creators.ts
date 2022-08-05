@@ -1,10 +1,8 @@
 import {EventActionsEnum, setEventActions, setGuestActions} from "./types";
 import {IUser} from "../../../models/IUser";
 import {AppDispatch} from "../../index";
-import axios from "axios";
 import {IEvent} from "../../../models/IEvent";
 import UserService from "../../../api/UserService";
-import {json} from "stream/consumers";
 
 export const EventCreators = {
     setGuest: (user: IUser[]): setGuestActions => ({type: EventActionsEnum.SET_GUEST, payload: user}),

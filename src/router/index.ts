@@ -11,8 +11,6 @@ export interface IRoute {
 export enum RoteNames {
     LOGIN = '/login',
     EVENT = '/',
-
-
 }
 
 export const publicRouter: IRoute[] = [
